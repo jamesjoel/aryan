@@ -13,4 +13,15 @@
     8. filter()
     9. reduce()
 
+
+
+    BackEnd - Dev (nodejs, database) --- API 
+
+    
+    
+    Domain -- flikart.com
+    URL    -- flikart.com/about, flikart.com/contact ---- UI (html+css)
+    API    -- flikart.com/api/product/furniture (get)     ---- Only DATA (JSON)
+    ReST - API   ---- flikart.com/api/product/furniture (get/post/put/delete) --- CRUD Operation
+
 */
