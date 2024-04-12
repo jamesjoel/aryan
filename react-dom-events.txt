@@ -1,0 +1,24 @@
+React DOM Event List
+
+1. onClick : when user click on an element.
+2. onDoubleClick : when user double click on an element.
+3. onContextMenu : when user right click on an element.
+
+4. onMouseOver : when user mouse cursor over an element.
+5. onMouseMove : when user mouse cursor move an element.
+6. onMouseOut : when user mouse cursor come out form an element.
+
+7. onKeyDown : when user press any key-board key.
+8. onKeyUp : when user release any key-board key.
+
+9. onFocus : when an element is focused.
+10. onBlur : when an element is un-focused.
+
+11. onSubmit : when a form is submitting.
+* 12. onChange : when a form element is changed.
+
+13. onLoad : when an element is loaded.
+14. onCopy : when user doing copy.
+15. onPaste : when user paste somting.
+16. onPrint : when user doing printing.
+17. 
