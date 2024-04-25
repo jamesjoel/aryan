@@ -1,45 +1,63 @@
-// import './App.css';
-
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-
-import { Routes, Route } from 'react-router-dom'
-import Home from './components/Home';
-import About from './components/About';
-import Contact from './components/Contact';
-import Help from './components/Help'
+import React, { useState, useEffect, useReducer } from 'react';
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 
-let App = ()=>{
+function App() {
+    let reducer = useReducer();
+    
+    const [ user, setUser ] = useState([]);
+    const [ profile, setProfile ] = useState([]);
 
-    return(
-        <>
-            <Header />
-            
-            <div className="container my-3" style={{minHeight : "750px"}}>
-                
-                <Routes>
-                    <Route path="" element={<Home />} />
-                    <Route path="about" element={<About />}/>
-                    <Route path="contact" element={<Contact />}/>
-                    <Route path="help" element={<Help />}/>
-                </Routes>
+    const login = useGoogleLogin({
+        onSuccess: (codeResponse) => setUser(codeResponse),
+        onError: (error) => console.log('Login Failed:', error)
+    });
 
-            </div>
-            
-            <Footer />
-        </>
-    )
+    useEffect(
+        () => {
+            if (user) {
+                axios
+                    .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+                        headers: {
+                            Authorization: `Bearer ${user.access_token}`,
+                            Accept: 'application/json'
+                        }
+                    })
+                    .then((res) => {
+                        setProfile(res.data);
+                    })
+                    .catch((err) => console.log(err));
+            }
+        },
+        [ user ]
+    );
 
+    // log out function to log the user out of google and set the profile array to null
+    const logOut = () => {
+        googleLogout();
+        setProfile(null);
+    };
+
+    return (
+        <div>
+            <h2>React Google Login</h2>
+            <br />
+            <br />
+            {profile ? (
+                <div>
+                    <img src={profile.picture} alt="user image" />
+                    <h3>User Logged in</h3>
+                    <p>Name: {profile.name}</p>
+                    <p>Email Address: {profile.email}</p>
+                    <br />
+                    <br />
+                    <button onClick={logOut}>Log out</button>
+                </div>
+            ) : (
+                <button onClick={login}>Sign in with Google 🚀 </button>
+            )}
+        </div>
+    );
 }
-
 export default App;
-/*
-    how to apply css in React-Project
-
-    1. Global Apply  in the file
-    2. use "import" statement for getting file
-    3. internal css
-    4. inline css
-
-*/

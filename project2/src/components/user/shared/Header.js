@@ -1,6 +1,17 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
+import axios from 'axios'
+import {API_URL} from '../../../util/API_URL';
 const Header = () => {
+
+    let [allCate, setAllCate] = useState([]);
+
+    useEffect(()=>{
+        axios.get(`${API_URL}/category`).then(response=>{
+            setAllCate(response.data);
+        })
+    },[])
+
   return (
     <div className="container-fluid fixed-top">
     <div className="container topbar bg-primary d-none d-lg-block">
@@ -10,8 +21,20 @@ const Header = () => {
                 <small className="me-3"><i className="fas fa-envelope me-2 text-secondary"></i><a href="#" className="text-white">Email@Example.com</a></small>
             </div>
             <div className="top-link pe-2">
-                <NavLink to="/login" className="text-white"><small className="text-white mx-2">Login</small>/</NavLink>
-                <NavLink to="/signup" className="text-white"><small className="text-white mx-2">Signup</small></NavLink>
+                {
+                    localStorage.getItem("access-token")
+                    ?
+                    <>
+                        <NavLink to="/myprofile" className="text-white"><small className="text-white mx-2">My Profile</small>/</NavLink>
+                        <NavLink to="/logout" className="text-white"><small className="text-white mx-2">Logout</small></NavLink>
+                    </>
+                    :
+                    <>
+                        <NavLink to="/login" className="text-white"><small className="text-white mx-2">Login</small>/</NavLink>
+                        <NavLink to="/signup" className="text-white"><small className="text-white mx-2">Signup</small></NavLink>
+                    </>
+                }
+                
                 
                 
             </div>
@@ -29,12 +52,17 @@ const Header = () => {
                     <NavLink to="/shop" className="nav-item nav-link">Shop</NavLink>
                     <a href="shop-detail.html" className="nav-item nav-link">Shop Detail</a>
                     <div className="nav-item dropdown">
-                        <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</a>
                         <div className="dropdown-menu m-0 bg-secondary rounded-0">
-                            <a href="cart.html" className="dropdown-item">Cart</a>
-                            <a href="chackout.html" className="dropdown-item">Chackout</a>
-                            <a href="testimonial.html" className="dropdown-item">Testimonial</a>
-                            <a href="404.html" className="dropdown-item">404 Page</a>
+                           {
+                                allCate.map((item, index)=>{
+                                    return(
+                                        <a key={index} href="cart.html" className="dropdown-item">{item.name}</a>
+                                    )
+                                })
+                           }
+                            
+                           
                         </div>
                     </div>
                     <a href="contact.html" className="nav-item nav-link">Contact</a>
