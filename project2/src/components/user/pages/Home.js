@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react' // Hooks
 import Populer from '../shared/Populer'
 import TopFooter from '../shared/TopFooter'
-
+import Slider from '../shared/Slider'
 import axios from 'axios'
 
 const Home = () => {
@@ -22,6 +22,7 @@ const Home = () => {
 
   return (
     <>
+    <Slider />
     <Populer />
     
     <div className="container-fluid fruite py-5">

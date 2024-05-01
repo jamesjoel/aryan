@@ -1,8 +1,9 @@
 import React from 'react'
-
+import Slider from '../shared/Slider'
 const Shop = () => {
   return (
     <>
+    <Slider />
     <div className="container-fluid fruite py-5">
             <div className="container py-5">
                 <h1 className="mb-4">Fresh fruits shop</h1>

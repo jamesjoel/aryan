@@ -42,7 +42,7 @@ const Signup = () => {
 
 
   return (
-    <div className="container my-4" style={{minHeight : "700px"}}>
+    <div className="container" style={{minHeight : "700px", marginTop : "200px"}}>
         <form onSubmit={userForm.handleSubmit}>
         <div className="row">            
             <div className="col-md-6 offset-md-3 mt-5">

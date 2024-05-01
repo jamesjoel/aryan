@@ -65,6 +65,14 @@ const Header = () => {
                            
                         </div>
                     </div>
+                    <div className="nav-item dropdown">
+                        <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">About</a>
+                        <div className="dropdown-menu m-0 bg-secondary rounded-0">
+                           <a href='/about/about1' className="dropdown-item">About1</a>                          
+                           <a href='/about/about2' className="dropdown-item">About2</a>                          
+                           <a href='/about/about3' className="dropdown-item">About3</a>                          
+                        </div>
+                    </div>
                     <a href="contact.html" className="nav-item nav-link">Contact</a>
                 </div>
                 <div className="d-flex m-3 me-0">

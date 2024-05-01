@@ -1,20 +1,25 @@
-import React from 'react'
-import Header from './components/user/shared/Header'
-import Slider from './components/user/shared/Slider'
-import Lastest from './components/user/shared/Lastest'
-import Footer from './components/user/shared/Footer'
-import AllRoutes from './routes/AllRoutes'
+import React, {useState, useEffect} from 'react'
+
 
 const App = () => {
+  let [content, setContent] = useState("post")
+
+  useEffect(()=>{
+    console.log("****")
+    return ()=>{
+      console.log("$$$$$$$$$")
+    }
+  })
+  useEffect(()=>{
+    console.log("####")
+  },[])
+
   return (
     <>
-    <Header />
-    <Slider />
-
-        <AllRoutes />
-
-    <Lastest />
-    <Footer />
+      <button onClick={()=>setContent("post")}>POST</button>
+      <button onClick={()=>setContent("comment")}>COMMENT</button>
+      <button onClick={()=>setContent("user")}>USER</button>
+      <h1>{content}</h1>
     </>
   )
 }
