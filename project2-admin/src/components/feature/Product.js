@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { useFormik } from 'formik'
 import axios from 'axios';
 import { API_URL } from '../../util/API_URL';
@@ -11,10 +11,12 @@ let ProductSchema = YUP.object({
   price : YUP.string().required("Insert Product Price"),
   category : YUP.string().required("Select Your Product Category"),
   detail : YUP.string().required("Insert Product Detail"),
-  type : YUP.string().required("Select Product Type")
+  type : YUP.string().required("Select Product Type"),
+  image : YUP.string().required("Select Product Image")
 })
 
 const Product = () => {
+  let image = useRef();
   let navigate = useNavigate();
   let [allCate, setAllCate] = useState([]);
   useEffect(()=>{
@@ -31,13 +33,24 @@ const Product = () => {
       price : "",
       category : "",
       detail : "",
-      type : ""
+      type : "",
+      image : ""
     },
     onSubmit : (formdata)=>{
       
-      axios.post(`${API_URL}/product`, formdata).then(response=>{
+      let file = image.current.files[0];
+      // now we can create our form by JS
+      let myform = new FormData();
+      myform.append("title", formdata.title);
+      myform.append("price", formdata.price);
+      myform.append("category", formdata.category);
+      myform.append("detail", formdata.detail);
+      myform.append("type", formdata.type);
+      myform.append("image", file);
+
+      axios.post(`${API_URL}/product`, myform).then(response=>{
         //console.log(response.data);
-        navigate("/product/list");
+        navigate("/admin/product/list");
       })
     }
   });
@@ -63,6 +76,14 @@ const Product = () => {
                           proFrom.errors.price && proFrom.touched.price ? <p className='text-danger'>{proFrom.errors.price}</p> : ''
                         }
                       </div>
+                      <div className='my-3'>
+                        <label>Select Product Image</label>
+                        <input type='file' ref={image} name='image' onChange={proFrom.handleChange} className={'form-control '+ (proFrom.errors.image && proFrom.touched.image ? 'is-invalid' : '')} />
+                        {
+                          proFrom.errors.image && proFrom.touched.image ? <p className='text-danger'>{proFrom.errors.image}</p> : ''
+                        }
+                      </div>
+
                       <div className="my-3">
                         <label>Product Category</label>
                         <select className={'form-control ' + (proFrom.errors.category && proFrom.touched.category ? 'is-invalid' : '')} name='category' onChange={proFrom.handleChange}>
@@ -110,3 +131,33 @@ const Product = () => {
 }
 
 export default Product
+
+/*
+  there are 11 tag in the form HTML v4
+    text
+    password
+    radio
+    checkbox
+    textarea
+    file
+    select-option
+    button
+    reset
+    submit
+    hidden
+
+  there are 11 tag in form HTML v5
+    date
+    time
+    range
+    color
+    month
+    year
+    email
+    url
+    tel
+    number
+    datetime-local
+
+
+*/

@@ -22,7 +22,7 @@ const Category = () => {
       onSubmit : (formdata)=>{
         
         axios.post(`${API_URL}/category`, formdata).then(response=>{
-          navigate("/category/list");
+          navigate("/admin/category/list");
         })
       } 
   });

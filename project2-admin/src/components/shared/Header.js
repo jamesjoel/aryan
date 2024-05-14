@@ -1,12 +1,13 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Header = () => {
   return (
     <>
      <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a className="navbar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo" /></a>
-          <a className="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+          <NavLink className="navbar-brand brand-logo text-light" to="/admin">Administrator</NavLink>
+          <NavLink className="navbar-brand brand-logo-mini text-light" to="/admin">A</NavLink>
         </div>
         <div className="navbar-menu-wrapper d-flex align-items-stretch">
           <button className="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -38,18 +39,18 @@ const Header = () => {
                 <div className="p-2">
                   <h5 className="dropdown-header text-uppercase pl-2 text-dark">Admin Options</h5>
                   
-                  <a className="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                  <NavLink className="dropdown-item py-1 d-flex align-items-center justify-content-between" to="/admin/profile">
                     <span>Profile</span>
                     
-                  </a>
+                  </NavLink>
                   
                   <div role="separator" className="dropdown-divider"></div>
                   <h5 className="dropdown-header text-uppercase  pl-2 text-dark mt-2">Actions</h5>
                   
-                  <a className="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                  <NavLink className="dropdown-item py-1 d-flex align-items-center justify-content-between" to="/admin/logout">
                     <span>Log Out</span>
                     <i className="mdi mdi-logout ml-1"></i>
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </li>

@@ -7,7 +7,8 @@ const UserSchema = mongoose.Schema({
     password : String,
     contact : String,
     address : String,
-    city : String
+    city : String,
+    status : { type : Number, default : 1 }
 })
 
 const User = mongoose.model("user", UserSchema);

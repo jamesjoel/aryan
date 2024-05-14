@@ -7,7 +7,7 @@ const Sidebar = () => {
           <ul className="nav">
             <li className="nav-item nav-category">Main</li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/">
+              <NavLink className="nav-link" to="/admin">
                 <span className="icon-bg"><i className="mdi mdi-cube menu-icon"></i></span>
                 <span className="menu-title">Dashboard</span>
               </NavLink>
@@ -20,8 +20,8 @@ const Sidebar = () => {
               </a>
               <div className="collapse" id="ui-basic">
                 <ul className="nav flex-column sub-menu">
-                  <li className="nav-item"> <NavLink className="nav-link" to="/category/add">Add</NavLink></li>
-                  <li className="nav-item"> <NavLink className="nav-link" to="/category/list">List</NavLink></li>
+                  <li className="nav-item"> <NavLink className="nav-link" to="/admin/category/add">Add</NavLink></li>
+                  <li className="nav-item"> <NavLink className="nav-link" to="/admin/category/list">List</NavLink></li>
                   
                 </ul>
               </div>
@@ -34,11 +34,17 @@ const Sidebar = () => {
               </a>
               <div className="collapse" id="ui-basic">
                 <ul className="nav flex-column sub-menu">
-                  <li className="nav-item"> <NavLink className="nav-link" to="/product/add">Add</NavLink></li>
-                  <li className="nav-item"> <NavLink className="nav-link" to="/product/list">List</NavLink></li>
+                  <li className="nav-item"> <NavLink className="nav-link" to="/admin/product/add">Add</NavLink></li>
+                  <li className="nav-item"> <NavLink className="nav-link" to="/admin/product/list">List</NavLink></li>
                   
                 </ul>
               </div>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/admin/users">
+                <span className="icon-bg"><i className="mdi mdi-cube menu-icon"></i></span>
+                <span className="menu-title">Users</span>
+              </NavLink>
             </li>
             {/* <li className="nav-item">
               <a className="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">

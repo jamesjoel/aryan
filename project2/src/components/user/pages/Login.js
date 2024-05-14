@@ -41,6 +41,10 @@ const Login = () => {
                 {
                     setErrMsg("Invalid Password");
                 }
+                if(response.data.success==false && response.data.errType==3)
+                {
+                    setErrMsg("You are disabled now, pls contact your team !");
+                }
             })
         }
         // localhost:8080/api/user/auth

@@ -18,10 +18,16 @@ routes.post("/", async(req, res)=>{
         if(result[0].password == sha1(p))
         {
             // unique string -- Token
-            let userobj = { id : result[0]._id };
-            let token = jwt.sign(userobj, KEY);
+            if(result[0].status==1)
+                {
+                    let userobj = { id : result[0]._id };
+                    let token = jwt.sign(userobj, KEY);
 
-            res.send({ success : true, token : token });
+                    res.send({ success : true, token : token });
+                }
+                else{
+                    res.send({ success : false, errType : 3})
+                }
         }
         else{
 
